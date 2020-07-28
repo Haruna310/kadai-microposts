@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
-  <%= render 'users', users: @users %>
+  before_action :require_user_logged_in, only: [:index, :show]
+  # <%= render 'users', users: @users %>
   def index
  @users = User.order(id: :desc).page(params[:page]).per(25)  end
 
@@ -20,11 +21,12 @@ class UsersController < ApplicationController
     else
       flash.now[:danger] = 'ユーザの登録に失敗しました。'
       render :new
+    end
   end
-end
 
-private
+  # private
 
   def user_params
     params.require(:user).permit(:name, :email, :password, :password_confirmation)
   end
+ end
