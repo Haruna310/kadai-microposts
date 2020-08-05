@@ -19,6 +19,7 @@ class SessionsController < ApplicationController
     flash[:success] = 'ログアウトしました。'
     redirect_to root_url
   end
+  
   def login(email, password)
     @user = User.find_by(email: email)
     if @user && @user.authenticate(password)

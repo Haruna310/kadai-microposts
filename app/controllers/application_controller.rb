@@ -9,6 +9,8 @@ def require_user_logged_in
   end
   
   def counts(user)
-      @count_microposts = user.microposts.count_microposts
+    @count_microposts = user.microposts.count
+    @count_followings = user.followings.count
+    @count_followers = user.followers.count
   end
 end
